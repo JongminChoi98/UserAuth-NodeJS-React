@@ -4,9 +4,13 @@ export const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      throw new Error("Something is missing");
+    }
+
     await authService.signup(name, email, password);
 
-    res.json({ message: "Signup Success!" });
+    res.status(201).json({ message: "Signup Success!" });
   } catch (error) {
     throw new Error("Something went wrong");
   }
