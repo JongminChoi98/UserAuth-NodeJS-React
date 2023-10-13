@@ -1,6 +1,6 @@
 import * as authService from "../services/authService";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
@@ -12,11 +12,11 @@ export const signup = async (req, res) => {
 
     res.status(201).json({ message: "Signup Success!" });
   } catch (error) {
-    throw new Error("Something went wrong");
+    next(error);
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, next) => {
   try {
     const { userId } = req.body;
 
@@ -24,6 +24,6 @@ export const deleteUser = async (req, res) => {
 
     res.json({ message: "Delete Success!" });
   } catch (error) {
-    throw new Error("Something went wrong");
+    next(error);
   }
 };
