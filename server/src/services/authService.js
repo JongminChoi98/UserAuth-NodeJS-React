@@ -1,5 +1,6 @@
 import * as authDao from "../models/authDao";
 import * as bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const signup = async (name, email, password) => {
   try {
@@ -11,9 +12,9 @@ export const signup = async (name, email, password) => {
       throw new Error("Invalid email formet.");
     }
 
-    const exists = await authDao.getUserByEmail(email);
+    const user = await authDao.getUserByEmail(email);
 
-    if (exists) {
+    if (user) {
       throw new Error("Email already exists");
     }
 
@@ -23,6 +24,26 @@ export const signup = async (name, email, password) => {
   } catch (error) {
     throw new Error("Something went wrong");
   }
+};
+
+export const login = async (email, password) => {
+  const user = await authDao.getUserByEmail(email);
+
+  if (!user) {
+    throw new Error("User not exists");
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    throw new Error("Invalid password");
+  }
+
+  const name = user.name;
+  const userCode = user.id;
+  const token = jwt.sign({ name, userCode }, "jwt-secret", { expiresIn: "1d" });
+
+  return token;
 };
 
 export const deleteUser = async (userId) => {
