@@ -17,6 +17,8 @@ export const signup = async (name, email, password) => {
   }
 };
 
+export const login = async (email, password) => {};
+
 export const deleteUser = async (userId) => {
   try {
     await AppDataSource.query(
@@ -32,18 +34,20 @@ export const deleteUser = async (userId) => {
 
 export const getUserByEmail = async (email) => {
   try {
-    const [exists] = await AppDataSource.query(
+    const [user] = await AppDataSource.query(
       `
-        SELECT CASE WHEN EXISTS
-          (SELECT
-              1
-            FROM users
-            WHERE email = '${email}'
-          ) THEN 1 ELSE 0 END AS user;
-      `
+        SELECT
+          id,
+          name,
+          email,
+          password
+        FROM users
+        WHERE email = ?
+      `,
+      [email]
     );
 
-    return +exists.user;
+    return user;
   } catch (error) {
     throw new Error("Something went wrong");
   }
@@ -57,7 +61,8 @@ export const getUserById = async (userId) => {
           name,
           email
       FROM users
-      WHERE id = ?`,
+      WHERE id = ?
+    `,
     [userId]
   );
 
