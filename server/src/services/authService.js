@@ -27,23 +27,29 @@ export const signup = async (name, email, password) => {
 };
 
 export const login = async (email, password) => {
-  const user = await authDao.getUserByEmail(email);
+  try {
+    const user = await authDao.getUserByEmail(email);
 
-  if (!user) {
-    throw new Error("User not exists");
+    if (!user) {
+      throw new Error("User not exists");
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      throw new Error("Invalid password");
+    }
+
+    const name = user.name;
+    const userCode = user.id;
+    const token = jwt.sign({ name, userCode }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    return token;
+  } catch (error) {
+    throw new Error("Something went wrong");
   }
-
-  const passwordMatch = await bcrypt.compare(password, user.password);
-
-  if (!passwordMatch) {
-    throw new Error("Invalid password");
-  }
-
-  const name = user.name;
-  const userCode = user.id;
-  const token = jwt.sign({ name, userCode }, "jwt-secret", { expiresIn: "1d" });
-
-  return token;
 };
 
 export const deleteUser = async (userId) => {

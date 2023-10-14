@@ -17,8 +17,6 @@ export const signup = async (name, email, password) => {
   }
 };
 
-export const login = async (email, password) => {};
-
 export const deleteUser = async (userId) => {
   try {
     await AppDataSource.query(

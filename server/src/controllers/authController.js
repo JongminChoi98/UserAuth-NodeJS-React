@@ -10,7 +10,7 @@ export const signup = async (req, res, next) => {
 
     await authService.signup(name, email, password);
 
-    res.status(201).json({ message: "Signup Success!" });
+    return res.status(201).json({ message: "Signup Success!" });
   } catch (error) {
     next(error);
   }
@@ -27,7 +27,7 @@ export const login = async (req, res, next) => {
     const token = await authService.login(email, password);
 
     res.cookie("token", token);
-    res.status(200).json({ message: "Login Success!" });
+    return res.status(200).json({ message: "Login Success!" });
   } catch (error) {
     next(error);
   }
@@ -42,8 +42,12 @@ export const getUser = async (req, res, next) => {
 };
 
 export const logout = async (req, res, next) => {
-  res.clearCookie("token");
-  return res.json({ message: "Success" });
+  try {
+    res.clearCookie("token");
+    return res.json({ message: "Logout Success" });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const deleteUser = async (req, res, next) => {
@@ -52,7 +56,7 @@ export const deleteUser = async (req, res, next) => {
 
     await authService.deleteUser(userId);
 
-    res.json({ message: "Delete Success!" });
+    return res.json({ message: "Delete Success!" });
   } catch (error) {
     next(error);
   }
