@@ -1,7 +1,19 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Edit from "./components/Edit";
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/edit" element={<Edit />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

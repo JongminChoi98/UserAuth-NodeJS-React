@@ -37,7 +37,7 @@ export const getUser = async (req, res, next) => {
   try {
     const { name } = req.user;
 
-    return res.json({ message: "Welcome", name });
+    return res.json({ message: "Success", name });
   } catch (error) {
     next(error);
   }
