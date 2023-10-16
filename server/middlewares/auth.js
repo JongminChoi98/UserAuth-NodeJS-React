@@ -9,7 +9,8 @@ export const verifyUser = (req, res, next) => {
       if (err) {
         return res.json({ message: "Authentication Error." });
       } else {
-        req.name = decoded.name;
+        const user = { name: decoded.name, id: decoded.userCode };
+        req.user = user;
         next();
       }
     });

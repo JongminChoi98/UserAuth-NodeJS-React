@@ -59,3 +59,26 @@ export const deleteUser = async (userId) => {
     throw new Error("Something went wrong");
   }
 };
+
+export const editUser = async (newName, newEmail, newPassword, userId) => {
+  try {
+    const user = await authDao.getUserById(userId);
+
+    if (newPassword !== undefined) {
+      const hashedPassword = await bcrypt.hash(newPassword, 12);
+      user.password = hashedPassword;
+    }
+
+    if (newEmail !== undefined) {
+      user.email = newEmail;
+    }
+
+    if (newName !== undefined) {
+      user.name = newName;
+    }
+
+    await authDao.editUser(user);
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+};

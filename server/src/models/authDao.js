@@ -52,17 +52,40 @@ export const getUserByEmail = async (email) => {
 };
 
 export const getUserById = async (userId) => {
-  const [user] = await AppDataSource.query(
-    `
-      SELECT
-          id,
-          name,
-          email
-      FROM users
-      WHERE id = ?
-    `,
-    [userId]
-  );
+  try {
+    const [user] = await AppDataSource.query(
+      `
+        SELECT
+            id,
+            name,
+            email,
+            password
+        FROM users
+        WHERE id = ?
+      `,
+      [userId]
+    );
 
-  return user;
+    return user;
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+};
+
+export const editUser = async (user) => {
+  try {
+    await AppDataSource.query(
+      `
+        UPDATE users
+        SET
+          name = ?,
+          email = ?,
+          password = ?
+        WHERE id = ?;
+      `,
+      [user.name, user.email, user.password, user.id]
+    );
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
 };

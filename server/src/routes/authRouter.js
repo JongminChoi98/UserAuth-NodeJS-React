@@ -14,5 +14,6 @@ authRouter
   .delete(verifyUser, authController.deleteUser)
   .get(verifyUser, authController.getUser);
 authRouter.get("/logout", verifyUser, authController.logout);
+authRouter.put("/edit", verifyUser, authController.editUser);
 
 export default authRouter;

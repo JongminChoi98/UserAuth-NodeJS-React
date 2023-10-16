@@ -35,7 +35,9 @@ export const login = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
   try {
-    return res.json({ message: " ", name: req.name });
+    const { name } = req.user;
+
+    return res.json({ message: "Welcome", name });
   } catch (error) {
     next(error);
   }
@@ -52,11 +54,25 @@ export const logout = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { id } = req.user;
 
-    await authService.deleteUser(userId);
+    await authService.deleteUser(id);
 
     return res.json({ message: "Delete Success!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const editUser = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
+    const { id } = req.user;
+
+    await authService.editUser(name, email, password, id);
+
+    res.clearCookie("token");
+    return res.json({ message: "Update Success!" });
   } catch (error) {
     next(error);
   }
