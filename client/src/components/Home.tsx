@@ -37,6 +37,9 @@ const Home = () => {
     <div>
       <h3>You are Authorized. Welcome {name} !</h3>
       <button onClick={handleLogout}>Logout</button>
+      <div>
+        <Link to={"/edit"}>Edit account</Link>
+      </div>
     </div>
   ) : (
     <div>

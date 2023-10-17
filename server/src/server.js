@@ -13,11 +13,12 @@ export const initServer = () => {
   app.use(
     cors({
       origin: [
-        "http://localhost:3000/login",
         "http://localhost:3000",
+        "http://localhost:3000/login",
+        "http://localhost:3000/signup",
         "http://localhost:3000/edit",
       ],
-      methods: ["POST", "GET"],
+      methods: ["POST", "GET", "PUT"],
       credentials: true,
     })
   );

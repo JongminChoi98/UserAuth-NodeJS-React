@@ -62,18 +62,24 @@ export const deleteUser = async (userId) => {
 
 export const editUser = async (newName, newEmail, newPassword, userId) => {
   try {
+    const emailDuplication = await authDao.getUserByEmail(newEmail);
+
+    if (emailDuplication) {
+      throw new Error("Email already exists");
+    }
+
     const user = await authDao.getUserById(userId);
 
-    if (newPassword !== undefined) {
+    if (newPassword !== undefined && newPassword.length !== 0) {
       const hashedPassword = await bcrypt.hash(newPassword, 12);
       user.password = hashedPassword;
     }
 
-    if (newEmail !== undefined) {
+    if (newEmail !== undefined && newEmail.length !== 0) {
       user.email = newEmail;
     }
 
-    if (newName !== undefined) {
+    if (newName !== undefined && newName.length !== 0) {
       user.name = newName;
     }
 
