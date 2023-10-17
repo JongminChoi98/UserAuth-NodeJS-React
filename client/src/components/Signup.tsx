@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
   const [values, setValues] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -14,10 +15,10 @@ const Login = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/users/login/", values)
+      .post("http://localhost:8000/users/signup/", values)
       .then((res) => {
-        if (res.data.message === "Login Success!") {
-          navigate("/");
+        if (res.data.message === "Signup Success!") {
+          navigate("/login");
         } else {
           alert("Hey!");
         }
@@ -27,8 +28,16 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            onChange={(e) => setValues({ ...values, name: e.target.value })}
+            required
+          />
+        </div>
         <div>
           <label>Email:</label>
           <input
@@ -45,14 +54,14 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Signup</button>
       </form>
       <div>
-        <h3>Don't have an account?</h3>
-        <Link to={"/signup"}>Signup Now</Link>
+        <h3>Already have an account?</h3>
+        <Link to={"/login"}>Login Now</Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

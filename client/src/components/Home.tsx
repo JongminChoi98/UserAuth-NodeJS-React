@@ -35,14 +35,20 @@ const Home = () => {
 
   return auth ? (
     <div>
-      <h3>You are Authorized {name} </h3>
+      <h3>You are Authorized. Welcome {name} !</h3>
       <button onClick={handleLogout}>Logout</button>
     </div>
   ) : (
     <div>
       <h3>{message}</h3>
-      <h3>Login Now</h3>
-      <Link to={"/login"}>Login</Link>
+      <div>
+        <h3>Don't have an account?</h3>
+        <Link to={"/signup"}>Signup Now</Link>
+      </div>
+      <div>
+        <h3>Already have an account?</h3>
+        <Link to={"/login"}>Login Now</Link>
+      </div>
     </div>
   );
 };
