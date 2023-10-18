@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "./css/components/Signup.css";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -27,38 +28,50 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="main-box-lg main-default">
+      <h2 className="form-header-default">Signup</h2>
+      <form
+        className="form-container-default Fornm-container"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-box-default">
           <label>Name:</label>
           <input
+            className="input-form-default"
             type="text"
             onChange={(e) => setValues({ ...values, name: e.target.value })}
             required
           />
         </div>
-        <div>
+        <div className="form-box-default">
           <label>Email:</label>
           <input
+            className="input-form-default"
             type="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
             required
           />
         </div>
-        <div>
+        <div className="form-box-default">
           <label>Password:</label>
           <input
+            className="input-form-default"
             type="password"
             onChange={(e) => setValues({ ...values, password: e.target.value })}
             required
           />
         </div>
-        <button type="submit">Signup</button>
+        <button className="Botton-default" type="submit">
+          Signup
+        </button>
       </form>
-      <div>
-        <h3>Already have an account?</h3>
-        <Link to={"/login"}>Login Now</Link>
+      <div className="links-container-default">
+        <div className="links-default">
+          <h3>Already have an account?</h3>
+          <Link className="Link-default" to={"/login"}>
+            Login Now
+          </Link>
+        </div>
       </div>
     </div>
   );

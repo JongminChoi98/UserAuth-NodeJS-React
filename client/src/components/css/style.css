@@ -87,3 +87,10 @@ body {
   flex-direction: column;
   margin: 20px;
 }
+
+.input-form-default {
+  height: 35px;
+  font-size: 20px;
+  border: solid gray 0.8px;
+  border-radius: 10px;
+}

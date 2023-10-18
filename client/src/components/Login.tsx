@@ -33,7 +33,7 @@ const Login = () => {
         <div className="form-box-default">
           <label>Email:</label>
           <input
-            className="input-form"
+            className="input-form-default"
             type="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
             required
@@ -42,7 +42,7 @@ const Login = () => {
         <div className="form-box-default">
           <label>Password:</label>
           <input
-            className="input-form"
+            className="input-form-default"
             type="password"
             onChange={(e) => setValues({ ...values, password: e.target.value })}
             required
