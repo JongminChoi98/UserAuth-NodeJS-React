@@ -1,0 +1,31 @@
+@import "./reset.css";
+
+body {
+  background-color: skyblue;
+  min-width: 800px;
+}
+
+.Link-default {
+  text-decoration: none;
+  color: darkgrey;
+  margin-left: 5px;
+}
+
+.Link-default:hover {
+  color: red;
+  font-weight: 600;
+}
+
+.Botton-default {
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: skyblue;
+  color: black;
+  border: solid gray 0.5px;
+}
+
+.Botton-default:hover {
+  background-color: rgb(48, 147, 186);
+  cursor: pointer;
+}

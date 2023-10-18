@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./css/components/Home.css";
 
 const Home = () => {
   const [auth, setAuth] = useState(false);
@@ -34,23 +35,40 @@ const Home = () => {
   };
 
   return auth ? (
-    <div>
-      <h3>You are Authorized. Welcome {name} !</h3>
-      <button onClick={handleLogout}>Logout</button>
-      <div>
-        <Link to={"/edit"}>Edit account</Link>
+    <div className="Home-main">
+      <div className="Home-content">
+        <h3>You are Authorized. Welcome {name} !</h3>
+        <div className="Home-links-container">
+          <button className="Botton-default" onClick={handleLogout}>
+            Logout
+          </button>
+          <div className="Home-links">
+            <h3>Want to update account?</h3>
+            <Link className="Link-default" to={"/edit"}>
+              Edit account
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   ) : (
-    <div>
-      <h3>{message}</h3>
-      <div>
-        <h3>Don't have an account?</h3>
-        <Link to={"/signup"}>Signup Now</Link>
-      </div>
-      <div>
-        <h3>Already have an account?</h3>
-        <Link to={"/login"}>Login Now</Link>
+    <div className="Home-main">
+      <div className="Home-content">
+        <h3>{message}</h3>
+        <div className="Home-links-container">
+          <div className="Home-links">
+            <h3>Don't have an account?</h3>
+            <Link className="Link-default" to={"/signup"}>
+              Signup
+            </Link>
+          </div>
+          <div className="Home-links">
+            <h3>Already have an account?</h3>
+            <Link className="Link-default" to={"/login"}>
+              Login
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
