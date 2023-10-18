@@ -12,12 +12,7 @@ export const initServer = () => {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: [
-        "http://localhost:3000",
-        "http://localhost:3000/login",
-        "http://localhost:3000/signup",
-        "http://localhost:3000/edit",
-      ],
+      origin: ["http://localhost:3000"],
       methods: ["POST", "GET", "PUT"],
       credentials: true,
     })
