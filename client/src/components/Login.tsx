@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "./css/components/Login.css";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -26,30 +27,38 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="main-default">
+      <h2 className="form-header-default">Login</h2>
+      <form className="form-container-default" onSubmit={handleSubmit}>
+        <div className="form-box-default">
           <label>Email:</label>
           <input
+            className="input-form"
             type="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
             required
           />
         </div>
-        <div>
+        <div className="form-box-default">
           <label>Password:</label>
           <input
+            className="input-form"
             type="password"
             onChange={(e) => setValues({ ...values, password: e.target.value })}
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="Botton-default" type="submit">
+          Login
+        </button>
       </form>
-      <div>
-        <h3>Don't have an account?</h3>
-        <Link to={"/signup"}>Signup Now</Link>
+      <div className="links-container-default ">
+        <div className="links-default">
+          <h3>Don't have an account?</h3>
+          <Link className="Link-default" to={"/signup"}>
+            Signup Now
+          </Link>
+        </div>
       </div>
     </div>
   );

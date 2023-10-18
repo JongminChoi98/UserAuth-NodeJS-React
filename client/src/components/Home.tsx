@@ -35,14 +35,14 @@ const Home = () => {
   };
 
   return auth ? (
-    <div className="Home-main">
-      <div className="Home-content">
+    <div className="main-default ">
+      <div className="content-default">
         <h3>You are Authorized. Welcome {name} !</h3>
-        <div className="Home-links-container">
+        <div className="links-container-default">
           <button className="Botton-default" onClick={handleLogout}>
             Logout
           </button>
-          <div className="Home-links">
+          <div className="links-default">
             <h3>Want to update account?</h3>
             <Link className="Link-default" to={"/edit"}>
               Edit account
@@ -52,17 +52,17 @@ const Home = () => {
       </div>
     </div>
   ) : (
-    <div className="Home-main">
-      <div className="Home-content">
+    <div className="main-default ">
+      <div className="content-default">
         <h3>{message}</h3>
-        <div className="Home-links-container">
-          <div className="Home-links">
+        <div className="links-container-default">
+          <div className="links-default">
             <h3>Don't have an account?</h3>
             <Link className="Link-default" to={"/signup"}>
               Signup
             </Link>
           </div>
-          <div className="Home-links">
+          <div className="links-default">
             <h3>Already have an account?</h3>
             <Link className="Link-default" to={"/login"}>
               Login

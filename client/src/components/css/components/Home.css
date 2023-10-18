@@ -1,41 +1,7 @@
-.Home-main {
-  background-color: white;
-  text-align: center;
-  width: 800px;
-  height: 400px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 25px;
-}
-
-.Home-content {
-  height: 100%;
-  width: 100%;
-}
-
-.Home-content:first-child {
+.content-default:first-child {
   font-size: 40px;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.Home-links-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  position: absolute;
-  bottom: 5%;
-}
-
-.Home-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 600;
 }
