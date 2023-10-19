@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./css/components/Signup.css";
 
 function Edit() {
   const [auth, setAuth] = useState(false);
@@ -43,36 +44,68 @@ function Edit() {
   };
 
   return auth ? (
-    <div>
-      <h3>Welcome {name} !</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="main-box-lg main-default">
+      <h3 className="form-header-default">Welcome {name} !</h3>
+      <form
+        className="form-container-default Fornm-container"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-box-default">
           <label>Name:</label>
           <input
+            className="input-form-default"
             type="text"
             onChange={(e) => setValues({ ...values, name: e.target.value })}
           />
         </div>
-        <div>
+        <div className="form-box-default">
           <label>Email:</label>
           <input
+            className="input-form-default"
             type="email"
             onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
         </div>
-        <div>
+        <div className="form-box-default">
           <label>Password:</label>
           <input
+            className="input-form-default"
             type="password"
             onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
         </div>
-        <button type="submit">Update</button>
+        <button className="Botton-default" type="submit">
+          Update
+        </button>
       </form>
+      <div className="links-container-default">
+        <div className="links-default">
+          <h3>Go back to home?</h3>
+          <Link className="Link-default" to={"/"}>
+            Home
+          </Link>
+        </div>
+      </div>
     </div>
   ) : (
-    <div>
-      <h3>{message}</h3>
+    <div className="main-default ">
+      <div className="content-default">
+        <h3>{message}</h3>
+        <div className="links-container-default">
+          <div className="links-default">
+            <h3>Don't have an account?</h3>
+            <Link className="Link-default" to={"/signup"}>
+              Signup
+            </Link>
+          </div>
+          <div className="links-default">
+            <h3>Already have an account?</h3>
+            <Link className="Link-default" to={"/login"}>
+              Login
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
